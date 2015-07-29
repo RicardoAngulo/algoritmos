@@ -1,0 +1,91 @@
+#include "stdafx.h"
+#include "conio.h"
+#include <iostream>
+
+#define F 10
+#define C 10
+
+using namespace std;
+struct tMatriz{
+	int Mat[F][C];
+};
+void cargar(tMatriz mat[F][C],int n);
+void mostrar(tMatriz mat[F][C],int n);
+int sumadiagonal(tMatriz mat[F][C],int n);
+
+void main(){
+int n,s,op;
+tMatriz M[F][C];
+	do{
+		do{
+		system("cls");
+		cout<<endl<<"    MENU    "<<endl;
+		cout<<endl<<"1.- Cargar ";
+		cout<<endl<<"2.- Mostrar ";
+		cout<<endl<<"3.- Suma diagonal de diagonal ";
+		cout<<endl<<"0.- Salir ";
+		cout<<endl<<"Introduzca una opcion ";
+		cin.clear();
+		fflush(stdin);
+		}while(!(cin>>op));
+		switch(op){
+			case 1:
+				cout<<"Introduzca el tamanio de la matriz ";
+				cin>>n;
+				cargar(M,n);
+				break;
+			case 2:
+				mostrar(M,n);
+				system("pause");
+				break;
+			case 3:
+				mostrar(M,n);
+				s=sumadiagonal(M,n);
+				cout<<endl<<"La suma de la diagonal de la matriz de matriz es: "<<s<<endl;
+				system("pause");
+				break;
+			default:cout<<endl<<"Introduzca una opcion valida ";
+		}
+		system("cls");
+	}while(op!=0);
+}
+void cargar(tMatriz mat[F][C],int n){
+int i,j,k,l;
+	for(i=0;i<n;i++){
+		for(j=0;j<n;j++){
+			for(k=0;k<n;k++){
+				for(l=0;l<n;l++){
+					cout<<"M["<<i<<"]["<<j<<"] ["<<k<<"]["<<l<<"] ";
+					cin>>mat[i][j].Mat[k][l];//= rand()%10;
+				}
+			}
+			cout<<endl;
+		}
+	}
+}
+void mostrar(tMatriz mat[F][C],int n){
+int i,j,k,l;
+	for(i=0;i<n;i++){
+		for(j=0;j<n;j++){
+			for(k=0;k<n;k++){
+				for(l=0;l<n;l++){
+					cout<<mat[i][j].Mat[k][l]<<"   ";
+				}
+				cout<<endl;
+			}
+			cout<<endl;
+		}
+		cout<<endl;
+	}
+}
+int sumadiagonal(tMatriz mat[F][C],int n){
+int i,j,sum=0,suma;
+	for(i=0;i<n;i++){
+		suma=0;
+		for(j=0;j<n;j++)
+			suma+=mat[i][i].Mat[j][j];
+	 cout<<"Lasuma de la diagonal es : "<<suma<<endl;
+	 sum+=suma;
+	 }
+	return sum;
+}
